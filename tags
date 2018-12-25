@@ -1,0 +1,298 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AE_ERR	./epoll.h	17;"	d
+AE_NONE	./epoll.h	19;"	d
+AE_OK	./epoll.h	16;"	d
+AE_READABLE	./epoll.h	20;"	d
+AE_WRITABLE	./epoll.h	21;"	d
+ANET_ERR	./inet.h	31;"	d
+ANET_OK	./inet.h	30;"	d
+INIT_DICT_SIZE	./hashmap.h	10;"	d
+MAX_CLIENTS	./inet.h	33;"	d
+MAX_DOUBLE_MEMORY	./str.h	11;"	d
+MAX_LEVEL	./skiplist.h	15;"	d
+NET_IP_STR_LEN	./inet.h	32;"	d
+NOKEY_ERROR	./inet.h	39;"	d
+PARSE_ERROR	./inet.h	38;"	d
+PROTO_IOBUF_LEN	./inet.h	34;"	d
+RESIZE_FACOTR	./hashmap.h	11;"	d
+STR_HEAD	./str.h	6;"	d
+SUCCESS	./inet.h	37;"	d
+UNUSED	./hash.c	187;"	d	file:
+USAGE	./inet.h	36;"	d
+__EPOLL_H	./epoll.h	11;"	d
+__HAHSMAP_H	./hashmap.h	2;"	d
+__HASH_H	./hash.h	2;"	d
+__INET_H	./inet.h	9;"	d
+__SERVER_H	./server.h	2;"	d
+__SORTMAP_H	./sortmap.h	12;"	d
+__STR_H	./str.h	2;"	d
+__TOOLS_H	./tools.h	2;"	d
+__ZMALLOC_H	./zmalloc.h	8;"	d
+__list_add	./skiplist.h	/^static inline void __list_add(struct sk_link *link, struct sk_link *prev, struct sk_link *next) {$/;"	f	signature:(struct sk_link *link, struct sk_link *prev, struct sk_link *next)
+__list_del	./skiplist.h	/^static inline void __list_del(struct sk_link *prev, struct sk_link *next) {$/;"	f	signature:(struct sk_link *prev, struct sk_link *next)
+_mapClear	./hashmap.c	/^void _mapClear(map *m, mapTable *mt) {$/;"	f	signature:(map *m, mapTable *mt)
+_processCommand	./inet.c	/^int _processCommand(void* tmp) {$/;"	f	signature:(void* tmp)
+_processCommand	./inet.h	/^int _processCommand(void* c);$/;"	p	signature:(void* c)
+_remove	./skiplist.c	/^void _remove(struct skipnode *node,int level,struct skiplist *list) {$/;"	f	signature:(struct skipnode *node,int level,struct skiplist *list)
+_remove	./skiplist.h	/^void _remove(struct skipnode *node, int level, struct skiplist *list);$/;"	p	signature:(struct skipnode *node, int level, struct skiplist *list)
+_sendReply	./inet.c	/^int _sendReply(void* tmp, char* buf) {$/;"	f	signature:(void* tmp, char* buf)
+_sendReply	./inet.h	/^int _sendReply(void* c, char* buf);$/;"	p	signature:(void* c, char* buf)
+_skiplistH	./skiplist.h	2;"	d
+acceptTcpHandler	./inet.c	/^void acceptTcpHandler(aeEventLoop *el, int fd, void* privdata, int mask) {$/;"	f	signature:(aeEventLoop *el, int fd, void* privdata, int mask)
+acceptTcpHandler	./inet.h	/^void acceptTcpHandler(aeEventLoop *el, int fd, void* privdata, int mask);$/;"	p	signature:(aeEventLoop *el, int fd, void* privdata, int mask)
+aeCreateEventLoop	./epoll.c	/^aeEventLoop *aeCreateEventLoop(int setsize) {$/;"	f	signature:(int setsize)
+aeCreateEventLoop	./epoll.h	/^aeEventLoop* aeCreateEventLoop (int setsize);$/;"	p	signature:(int setsize)
+aeCreateFileEvent	./epoll.c	/^int aeCreateFileEvent(aeEventLoop *eventLoop, int fd, int mask, aeFileProc *proc, void *clientData) {$/;"	f	signature:(aeEventLoop *eventLoop, int fd, int mask, aeFileProc *proc, void *clientData)
+aeCreateFileEvent	./epoll.h	/^int aeCreateFileEvent(aeEventLoop* eventLoop, int fd, int mask, aeFileProc *proc, void* clientData);$/;"	p	signature:(aeEventLoop* eventLoop, int fd, int mask, aeFileProc *proc, void* clientData)
+aeDeleteEventLoop	./epoll.c	/^void aeDeleteEventLoop(aeEventLoop *eventLoop) {$/;"	f	signature:(aeEventLoop *eventLoop)
+aeDeleteEventLoop	./epoll.h	/^void aeDeleteEventLoop(aeEventLoop* eventLoop);$/;"	p	signature:(aeEventLoop* eventLoop)
+aeDeleteFileEvent	./epoll.c	/^void aeDeleteFileEvent(aeEventLoop *eventLoop, int fd, int mask) {$/;"	f	signature:(aeEventLoop *eventLoop, int fd, int mask)
+aeDeleteFileEvent	./epoll.h	/^void aeDeleteFileEvent(aeEventLoop* eventLoop, int fd, int mask);$/;"	p	signature:(aeEventLoop* eventLoop, int fd, int mask)
+aeEventLoop	./epoll.h	/^typedef struct aeEventLoop {$/;"	s
+aeEventLoop	./epoll.h	/^} aeEventLoop;$/;"	t	typeref:struct:aeEventLoop
+aeEventLoop::ep_events	./epoll.h	/^	struct epoll_event *ep_events;$/;"	m	struct:aeEventLoop	typeref:struct:aeEventLoop::epoll_event	access:public
+aeEventLoop::epollfd	./epoll.h	/^	int epollfd;$/;"	m	struct:aeEventLoop	access:public
+aeEventLoop::events	./epoll.h	/^	aeFileEvent *events;$/;"	m	struct:aeEventLoop	access:public
+aeEventLoop::fired	./epoll.h	/^	aeFiredEvent *fired;$/;"	m	struct:aeEventLoop	access:public
+aeEventLoop::setsize	./epoll.h	/^	int setsize;$/;"	m	struct:aeEventLoop	access:public
+aeEventLoop::stop	./epoll.h	/^	int stop;$/;"	m	struct:aeEventLoop	access:public
+aeFileEvent	./epoll.h	/^typedef struct aeFileEvent { $/;"	s
+aeFileEvent	./epoll.h	/^} aeFileEvent;$/;"	t	typeref:struct:aeFileEvent
+aeFileEvent::clientData	./epoll.h	/^	void* clientData; \/\/ callback args.$/;"	m	struct:aeFileEvent	access:public
+aeFileEvent::mask	./epoll.h	/^	int mask; \/\/register the kind of event$/;"	m	struct:aeFileEvent	access:public
+aeFileEvent::rfileProc	./epoll.h	/^	aeFileProc* rfileProc; \/\/register read call back function$/;"	m	struct:aeFileEvent	access:public
+aeFileEvent::wfileProc	./epoll.h	/^	aeFileProc* wfileProc; \/\/ register write call back function$/;"	m	struct:aeFileEvent	access:public
+aeFileProc	./epoll.h	/^typedef void aeFileProc(struct aeEventLoop *eventLoop, int fd, void *clientData, int mask);$/;"	t
+aeFiredEvent	./epoll.h	/^typedef struct aeFiredEvent {$/;"	s
+aeFiredEvent	./epoll.h	/^} aeFiredEvent;$/;"	t	typeref:struct:aeFiredEvent
+aeFiredEvent::fd	./epoll.h	/^	int fd;$/;"	m	struct:aeFiredEvent	access:public
+aeFiredEvent::mask	./epoll.h	/^	int mask;$/;"	m	struct:aeFiredEvent	access:public
+aeMain	./epoll.c	/^void aeMain(aeEventLoop* eventLoop) {$/;"	f	signature:(aeEventLoop* eventLoop)
+aeMain	./epoll.h	/^void aeMain(aeEventLoop* eventLoop);$/;"	p	signature:(aeEventLoop* eventLoop)
+aeProcessEvents	./epoll.c	/^int aeProcessEvents(aeEventLoop *eventLoop) {$/;"	f	signature:(aeEventLoop *eventLoop)
+aeProcessEvents	./epoll.h	/^int aeProcessEvents(aeEventLoop* eventLoop);$/;"	p	signature:(aeEventLoop* eventLoop)
+aeStop	./epoll.c	/^void aeStop(aeEventLoop *eventLoop) {$/;"	f	signature:(aeEventLoop *eventLoop)
+aeStop	./epoll.h	/^void aeStop(aeEventLoop* eventLoop);$/;"	p	signature:(aeEventLoop* eventLoop)
+anetCreateSocket	./inet.c	/^int anetCreateSocket() {$/;"	f
+anetCreateSocket	./inet.h	/^int anetCreateSocket();$/;"	p	signature:()
+anetListen	./inet.c	/^int anetListen(int s, struct sockaddr *sa, socklen_t len, int backlog) {$/;"	f	signature:(int s, struct sockaddr *sa, socklen_t len, int backlog)
+anetListen	./inet.h	/^int anetListen(int s, struct sockaddr *sa, socklen_t len, int backlog);$/;"	p	signature:(int s, struct sockaddr *sa, socklen_t len, int backlog)
+anetRead	./inet.h	/^int anetRead(int fd, char *buf, int count);$/;"	p	signature:(int fd, char *buf, int count)
+anetSetNonBlock	./inet.c	/^int anetSetNonBlock(int fd, int non_block) {$/;"	f	signature:(int fd, int non_block)
+anetSetNonBlock	./inet.h	/^int anetSetNonBlock( int fd, int non_block);$/;"	p	signature:( int fd, int non_block)
+anetTcpServer	./inet.c	/^int anetTcpServer(int s, int port, char *bindaddr, int backlog) {$/;"	f	signature:(int s, int port, char *bindaddr, int backlog)
+anetTcpServer	./inet.h	/^int anetTcpServer(int s, int port, char *bindaddr, int backlog);$/;"	p	signature:(int s, int port, char *bindaddr, int backlog)
+anetWrite	./inet.h	/^int anetWrite(int fd, char *buf, int count);$/;"	p	signature:(int fd, char *buf, int count)
+buf	./str.h	/^	char buf[];$/;"	m	struct:strinfo	access:public
+cap	./str.h	/^	size_t cap;$/;"	m	struct:strinfo	access:public
+cleanstr	./str.c	/^void cleanstr(char* s) {$/;"	f	signature:(char* s)
+cleanstr	./str.h	/^void cleanstr(char* s);$/;"	p	signature:(char* s)
+client	./server.h	/^typedef struct client { $/;"	s
+client	./server.h	/^} client;$/;"	t	typeref:struct:client
+client::client_ip	./server.h	/^	char* client_ip; \/\/client ip$/;"	m	struct:client	access:public
+client::fd	./server.h	/^	int fd; \/\/file descriptor$/;"	m	struct:client	access:public
+client::inbuf	./server.h	/^	char* inbuf; \/\/ requset buf$/;"	m	struct:client	access:public
+client::inlen	./server.h	/^	size_t inlen; \/\/ temporary number to remember how many bytes have been write every event.$/;"	m	struct:client	access:public
+client::outbuf	./server.h	/^	char* outbuf; \/\/ reply buf$/;"	m	struct:client	access:public
+client::outlen	./server.h	/^	size_t outlen; \/\/ temporary number to remember how many bytes have been write every event.$/;"	m	struct:client	access:public
+client::port	./server.h	/^	int port; \/\/client port$/;"	m	struct:client	access:public
+clientData	./epoll.h	/^	void* clientData; \/\/ callback args.$/;"	m	struct:aeFileEvent	access:public
+client_channel	./server.h	/^	int client_channel; \/\/number fo clients$/;"	m	struct:serverInfo	access:public
+client_ip	./server.h	/^	char* client_ip; \/\/client ip$/;"	m	struct:client	access:public
+count	./skiplist.h	/^        int count;$/;"	m	struct:skiplist	access:public
+crc64	./hash.c	/^uint64_t crc64(uint64_t crc, const unsigned char *s, uint64_t l) {$/;"	f	signature:(uint64_t crc, const unsigned char *s, uint64_t l)
+crc64Test	./hash.c	/^int crc64Test(int argc, char *argv[]) {$/;"	f	signature:(int argc, char *argv[])
+crc64_tab	./hash.c	/^static const uint64_t crc64_tab[256] = {$/;"	v	file:
+del	./sortmap.c	/^int del(char* key, sortmap* sm) {$/;"	f	signature:(char* key, sortmap* sm)
+del	./sortmap.h	/^int del(char* key, sortmap* sm);$/;"	p	signature:(char* key, sortmap* sm)
+delskn	./skiplist.c	/^void delskn(struct skipnode *node) {$/;"	f	signature:(struct skipnode *node)
+delskn	./skiplist.h	/^void delskn(struct skipnode *node);$/;"	p	signature:(struct skipnode *node)
+destroyClient	./server.c	/^void destroyClient(client* client) {$/;"	f	signature:(client* client)
+destroyClient	./server.h	/^void destroyClient(client* client);$/;"	p	signature:(client* client)
+destroyMap	./hashmap.c	/^void destroyMap(map* m) {$/;"	f	signature:(map* m)
+destroyMap	./hashmap.h	/^void destroyMap(map* m);$/;"	p	signature:(map* m)
+destroySortMap	./sortmap.c	/^void destroySortMap(sortmap* sm) {$/;"	f	signature:(sortmap* sm)
+destroySortMap	./sortmap.h	/^void destroySortMap(sortmap* sm);$/;"	p	signature:(sortmap* sm)
+el	./server.h	/^	aeEventLoop* el; \/\/ main eventloop$/;"	m	struct:serverInfo	access:public
+emptystr	./str.c	/^char* emptystr() {$/;"	f
+emptystr	./str.h	/^char* emptystr();$/;"	p	signature:()
+ep_events	./epoll.h	/^	struct epoll_event *ep_events;$/;"	m	struct:aeEventLoop	typeref:struct:aeEventLoop::epoll_event	access:public
+epollfd	./epoll.h	/^	int epollfd;$/;"	m	struct:aeEventLoop	access:public
+events	./epoll.h	/^	aeFileEvent *events;$/;"	m	struct:aeEventLoop	access:public
+fd	./epoll.h	/^	int fd;$/;"	m	struct:aeFiredEvent	access:public
+fd	./server.h	/^	int fd; \/\/file descriptor$/;"	m	struct:client	access:public
+fd	./server.h	/^	int fd; \/\/main process fd$/;"	m	struct:serverInfo	access:public
+fired	./epoll.h	/^	aeFiredEvent *fired;$/;"	m	struct:aeEventLoop	access:public
+freestr	./str.c	/^void freestr(char* s) {$/;"	f	signature:(char* s)
+freestr	./str.h	/^void freestr(char*s);$/;"	p	signature:(char*s)
+get	./sortmap.c	/^char* get(char* key,sortmap* sm) {$/;"	f	signature:(char* key,sortmap* sm)
+get	./sortmap.h	/^char* get(char* key,sortmap* sm);$/;"	p	signature:(char* key,sortmap* sm)
+getlen	./str.h	/^static inline size_t getlen(const char* s) {$/;"	f	signature:(const char* s)
+getsknval	./sortmap.h	17;"	d
+hashmap_test	./hashmap.c	/^void hashmap_test() {$/;"	f
+hashmap_test	./hashmap.h	/^void hashmap_test();$/;"	p	signature:()
+head	./skiplist.h	/^        struct sk_link head[MAX_LEVEL];$/;"	m	struct:skiplist	typeref:struct:skiplist::sk_link	access:public
+inbuf	./server.h	/^	char* inbuf; \/\/ requset buf$/;"	m	struct:client	access:public
+initClient	./server.c	/^client* initClient(const char* ip, int port,int fd) {$/;"	f	signature:(const char* ip, int port,int fd)
+initClient	./server.h	/^client* initClient(const char* ip, int port,int fd);$/;"	p	signature:(const char* ip, int port,int fd)
+initMap	./hashmap.c	/^map* initMap() {$/;"	f
+initMap	./hashmap.h	/^map* initMap();$/;"	p	signature:()
+initMapTable	./hashmap.c	/^void initMapTable(mapTable* table) {$/;"	f	signature:(mapTable* table)
+initMapTable	./hashmap.h	/^void initMapTable(mapTable* table);$/;"	p	signature:(mapTable* table)
+initSortMap	./sortmap.c	/^sortmap* initSortMap() {$/;"	f
+initSortMap	./sortmap.h	/^sortmap* initSortMap();$/;"	p	signature:()
+inlen	./server.h	/^	size_t inlen; \/\/ temporary number to remember how many bytes have been write every event.$/;"	m	struct:client	access:public
+itoa	./tools.h	/^static void itoa(int a, char str[]) {$/;"	f	signature:(int a, char str[])
+key	./hashmap.h	/^	char* key;$/;"	m	struct:mapEntry	access:public
+key	./skiplist.h	/^        char* key;$/;"	m	struct:skipnode	access:public
+len	./str.h	/^	size_t len;$/;"	m	struct:strinfo	access:public
+level	./skiplist.h	/^		int level;$/;"	m	struct:skipnode	access:public
+level	./skiplist.h	/^        int level;$/;"	m	struct:skiplist	access:public
+link	./skiplist.h	/^        struct sk_link link[0];$/;"	m	struct:skipnode	typeref:struct:skipnode::sk_link	access:public
+list_add	./skiplist.h	/^static inline void list_add(struct sk_link *link, struct sk_link *prev) {$/;"	f	signature:(struct sk_link *link, struct sk_link *prev)
+list_del	./skiplist.h	/^static inline void list_del(struct sk_link *link) {$/;"	f	signature:(struct sk_link *link)
+list_empty	./skiplist.h	/^static inline int list_empty(struct sk_link *link) {$/;"	f	signature:(struct sk_link *link)
+list_entry	./skiplist.h	6;"	d
+list_init	./skiplist.h	/^static inline void list_init(struct sk_link *link) {$/;"	f	signature:(struct sk_link *link)
+m	./sortmap.h	/^	map* m;$/;"	m	struct:sortmap	access:public
+main	./server.c	/^int main() {$/;"	f
+map	./hashmap.h	/^typedef struct map {$/;"	s
+map	./hashmap.h	/^}map;$/;"	t	typeref:struct:map
+map::mt	./hashmap.h	/^	mapTable mt[2];$/;"	m	struct:map	access:public
+map::rehashIdx	./hashmap.h	/^	long rehashIdx;$/;"	m	struct:map	access:public
+mapEntry	./hashmap.h	/^typedef struct mapEntry {$/;"	s
+mapEntry	./hashmap.h	/^}mapEntry;$/;"	t	typeref:struct:mapEntry
+mapEntry::key	./hashmap.h	/^	char* key;$/;"	m	struct:mapEntry	access:public
+mapEntry::next	./hashmap.h	/^	struct mapEntry* next;$/;"	m	struct:mapEntry	typeref:struct:mapEntry::mapEntry	access:public
+mapEntry::val	./hashmap.h	/^	void* val;$/;"	m	struct:mapEntry	access:public
+mapTable	./hashmap.h	/^typedef struct mapTable {$/;"	s
+mapTable	./hashmap.h	/^}mapTable;$/;"	t	typeref:struct:mapTable
+mapTable::mtable	./hashmap.h	/^	struct mapEntry** mtable;$/;"	m	struct:mapTable	typeref:struct:mapTable::mapEntry	access:public
+mapTable::size	./hashmap.h	/^	size_t size;$/;"	m	struct:mapTable	access:public
+mapTable::used	./hashmap.h	/^	size_t used;$/;"	m	struct:mapTable	access:public
+mapdel	./hashmap.c	/^void* mapdel(char* k, map* m) {$/;"	f	signature:(char* k, map* m)
+mapdel	./hashmap.h	/^void* mapdel(char* k, map* m);$/;"	p	signature:(char* k, map* m)
+mapfind	./hashmap.c	/^mapEntry* mapfind(const char* k, map* m) {$/;"	f	signature:(const char* k, map* m)
+mapfind	./hashmap.h	/^mapEntry* mapfind(const char* k, map* m);$/;"	p	signature:(const char* k, map* m)
+mapget	./hashmap.c	/^void* mapget(const char* k, map *m) {$/;"	f	signature:(const char* k, map *m)
+mapget	./hashmap.h	/^void* mapget(const char* k, map* m);$/;"	p	signature:(const char* k, map* m)
+mapgetIdx	./hashmap.c	/^uint64_t mapgetIdx(const char* k,  size_t mask) {$/;"	f	signature:(const char* k, size_t mask)
+mapset	./hashmap.c	/^int mapset(const char* k, void* v, map* m) {$/;"	f	signature:(const char* k, void* v, map* m)
+mapset	./hashmap.h	/^int mapset(const char* k,void* v,map* m);$/;"	p	signature:(const char* k,void* v,map* m)
+mask	./epoll.h	/^	int mask; \/\/register the kind of event$/;"	m	struct:aeFileEvent	access:public
+mask	./epoll.h	/^	int mask;$/;"	m	struct:aeFiredEvent	access:public
+mt	./hashmap.h	/^	mapTable mt[2];$/;"	m	struct:map	access:public
+mtable	./hashmap.h	/^	struct mapEntry** mtable;$/;"	m	struct:mapTable	typeref:struct:mapTable::mapEntry	access:public
+newskl	./skiplist.c	/^struct skiplist *newskl(void) {$/;"	f	signature:(void)
+newskl	./skiplist.h	/^struct skiplist *newskl(void);$/;"	p	signature:(void)
+newskn	./skiplist.c	/^struct skipnode *newskn(int level,char* key,char* val) {$/;"	f	signature:(int level,char* key,char* val)
+newskn	./skiplist.h	/^struct skipnode *newskn(int level, char* key, char* val);$/;"	p	signature:(int level, char* key, char* val)
+newstr	./str.c	/^char* newstr(const char* init) {$/;"	f	signature:(const char* init)
+newstr	./str.h	/^char* newstr(const char* init);$/;"	p	signature:(const char* init)
+newstrlen	./str.c	/^char* newstrlen(const char* init, size_t len) {$/;"	f	signature:(const char* init, size_t len)
+newstrlen	./str.h	/^char* newstrlen(const char* init, size_t len);$/;"	p	signature:(const char* init, size_t len)
+next	./hashmap.h	/^	struct mapEntry* next;$/;"	m	struct:mapEntry	typeref:struct:mapEntry::mapEntry	access:public
+next	./skiplist.h	/^        struct sk_link *prev, *next;$/;"	m	struct:sk_link	typeref:struct:sk_link::	access:public
+outbuf	./server.h	/^	char* outbuf; \/\/ reply buf$/;"	m	struct:client	access:public
+outlen	./server.h	/^	size_t outlen; \/\/ temporary number to remember how many bytes have been write every event.$/;"	m	struct:client	access:public
+parseCommand	./str.c	/^char **parseCommand(const char *line, int* argc) {$/;"	f	signature:(const char *line, int* argc)
+parseCommand	./str.h	/^char **parseCommand(const char *line, int* argc);$/;"	p	signature:(const char *line, int* argc)
+parse_test	./str.c	/^void parse_test() {$/;"	f
+parse_test	./str.h	/^void parse_test();$/;"	p	signature:()
+port	./server.h	/^	int port; \/\/client port$/;"	m	struct:client	access:public
+prev	./skiplist.h	/^        struct sk_link *prev, *next;$/;"	m	struct:sk_link	typeref:struct:sk_link::sk_link	access:public
+randoml	./skiplist.c	/^int randoml(void) {$/;"	f	signature:(void)
+randoml	./skiplist.h	/^int randoml(void);$/;"	p	signature:(void)
+readQueryFromClient	./inet.c	/^void readQueryFromClient(aeEventLoop *el, int fd, void *privdata, int mask) {$/;"	f	signature:(aeEventLoop *el, int fd, void *privdata, int mask)
+readQueryFromClient	./inet.h	/^void readQueryFromClient(aeEventLoop *el, int fd, void* privdata, int mask);$/;"	p	signature:(aeEventLoop *el, int fd, void* privdata, int mask)
+rehashIdx	./hashmap.h	/^	long rehashIdx;$/;"	m	struct:map	access:public
+rfileProc	./epoll.h	/^	aeFileProc* rfileProc; \/\/register read call back function$/;"	m	struct:aeFileEvent	access:public
+scan	./sortmap.c	/^char* scan(sortmap* sm) {$/;"	f	signature:(sortmap* sm)
+scan	./sortmap.h	/^char* scan(sortmap* map);$/;"	p	signature:(sortmap* map)
+sendReplyToClient	./inet.c	/^void sendReplyToClient(aeEventLoop *el, int fd, void *privdata, int mask) {$/;"	f	signature:(aeEventLoop *el, int fd, void *privdata, int mask)
+sendReplyToClient	./inet.h	/^void sendReplyToClient(aeEventLoop *el, int fd, void *privdata, int mask);$/;"	p	signature:(aeEventLoop *el, int fd, void *privdata, int mask)
+server	./server.c	/^serverInfo server;$/;"	v
+serverInfo	./server.h	/^typedef struct serverInfo {$/;"	s
+serverInfo	./server.h	/^} serverInfo;$/;"	t	typeref:struct:serverInfo
+serverInfo::client_channel	./server.h	/^	int client_channel; \/\/number fo clients$/;"	m	struct:serverInfo	access:public
+serverInfo::el	./server.h	/^	aeEventLoop* el; \/\/ main eventloop$/;"	m	struct:serverInfo	access:public
+serverInfo::fd	./server.h	/^	int fd; \/\/main process fd$/;"	m	struct:serverInfo	access:public
+serverInfo::sm	./server.h	/^	sortmap* sm; \/\/main store structure$/;"	m	struct:serverInfo	access:public
+set	./sortmap.c	/^int set(char* key, char* val, sortmap* sm) {$/;"	f	signature:(char* key, char* val, sortmap* sm)
+set	./sortmap.h	/^int set(char* key, char* val, sortmap* sm);$/;"	p	signature:(char* key, char* val, sortmap* sm)
+setcap	./str.h	/^static inline void setcap(const char* s, int newcap) {$/;"	f	signature:(const char* s, int newcap)
+setlen	./str.h	/^static inline void setlen(const char* s, int newlen) {$/;"	f	signature:(const char* s, int newlen)
+setsize	./epoll.h	/^	int setsize;$/;"	m	struct:aeEventLoop	access:public
+siphash	./hash.h	/^uint64_t siphash(const uint8_t *in, const size_t inlen, const uint8_t *k);$/;"	p	signature:(const uint8_t *in, const size_t inlen, const uint8_t *k)
+size	./hashmap.h	/^	size_t size;$/;"	m	struct:mapTable	access:public
+sk_link	./skiplist.h	/^struct sk_link {$/;"	s
+sk_link::next	./skiplist.h	/^        struct sk_link *prev, *next;$/;"	m	struct:sk_link	typeref:struct:sk_link::	access:public
+sk_link::prev	./skiplist.h	/^        struct sk_link *prev, *next;$/;"	m	struct:sk_link	typeref:struct:sk_link::sk_link	access:public
+skiplist	./skiplist.h	/^typedef struct skiplist {$/;"	s
+skiplist	./skiplist.h	/^}skiplist;$/;"	t	typeref:struct:skiplist
+skiplist::count	./skiplist.h	/^        int count;$/;"	m	struct:skiplist	access:public
+skiplist::head	./skiplist.h	/^        struct sk_link head[MAX_LEVEL];$/;"	m	struct:skiplist	typeref:struct:skiplist::sk_link	access:public
+skiplist::level	./skiplist.h	/^        int level;$/;"	m	struct:skiplist	access:public
+skiplist_test	./skiplist.c	/^void skiplist_test() {$/;"	f
+skiplist_test	./skiplist.h	/^void skiplist_test();$/;"	p	signature:()
+skiplistforeach	./skiplist.h	9;"	d
+skiplistforeach_safe	./skiplist.h	12;"	d
+skipnode	./skiplist.h	/^typedef struct skipnode {$/;"	s
+skipnode	./skiplist.h	/^}skipnode;$/;"	t	typeref:struct:skipnode
+skipnode::key	./skiplist.h	/^        char* key;$/;"	m	struct:skipnode	access:public
+skipnode::level	./skiplist.h	/^		int level;$/;"	m	struct:skipnode	access:public
+skipnode::link	./skiplist.h	/^        struct sk_link link[0];$/;"	m	struct:skipnode	typeref:struct:skipnode::sk_link	access:public
+skipnode::val	./skiplist.h	/^    	char* val;$/;"	m	struct:skipnode	access:public
+skl	./sortmap.h	/^	skiplist* skl;$/;"	m	struct:sortmap	access:public
+skldel	./skiplist.c	/^void skldel(struct skiplist *list) {$/;"	f	signature:(struct skiplist *list)
+skldel	./skiplist.h	/^void skldel(struct skiplist *list);$/;"	p	signature:(struct skiplist *list)
+sklget	./skiplist.c	/^struct skipnode *sklget(char* key,struct skiplist *list) {$/;"	f	signature:(char* key,struct skiplist *list)
+sklget	./skiplist.h	/^struct skipnode *sklget(char* key, struct skiplist *list);$/;"	p	signature:(char* key, struct skiplist *list)
+sklrm	./skiplist.c	/^void sklrm(char* key,struct skiplist *list) {$/;"	f	signature:(char* key,struct skiplist *list)
+sklrm	./skiplist.h	/^void sklrm(char* key, struct skiplist *list);$/;"	p	signature:(char* key, struct skiplist *list)
+sklrmnode	./skiplist.c	/^void sklrmnode(skipnode* node,struct skiplist *list) {$/;"	f	signature:(skipnode* node,struct skiplist *list)
+sklrmnode	./skiplist.h	/^void sklrmnode(skipnode* node, struct skiplist *list);$/;"	p	signature:(skipnode* node, struct skiplist *list)
+sklscan	./skiplist.c	/^char* sklscan(struct skiplist *list) {$/;"	f	signature:(struct skiplist *list)
+sklscan	./skiplist.h	/^char* sklscan(struct skiplist *list);$/;"	p	signature:(struct skiplist *list)
+sklset	./skiplist.c	/^struct skipnode * sklset(char* key,char* val,struct skiplist *list) {$/;"	f	signature:(char* key,char* val,struct skiplist *list)
+sklset	./skiplist.h	/^struct skipnode * sklset(char* key, char* val, struct skiplist *list);$/;"	p	signature:(char* key, char* val, struct skiplist *list)
+sm	./server.h	/^	sortmap* sm; \/\/main store structure$/;"	m	struct:serverInfo	access:public
+sortmap	./sortmap.h	/^typedef struct sortmap {$/;"	s
+sortmap	./sortmap.h	/^}sortmap;$/;"	t	typeref:struct:sortmap
+sortmap::m	./sortmap.h	/^	map* m;$/;"	m	struct:sortmap	access:public
+sortmap::skl	./sortmap.h	/^	skiplist* skl;$/;"	m	struct:sortmap	access:public
+stop	./epoll.h	/^	int stop;$/;"	m	struct:aeEventLoop	access:public
+str_test	./str.c	/^void str_test() {$/;"	f
+str_test	./str.h	/^void str_test();$/;"	p	signature:()
+strinfo	./str.h	/^struct strinfo {$/;"	s
+strinfo::buf	./str.h	/^	char buf[];$/;"	m	struct:strinfo	access:public
+strinfo::cap	./str.h	/^	size_t cap;$/;"	m	struct:strinfo	access:public
+strinfo::len	./str.h	/^	size_t len;$/;"	m	struct:strinfo	access:public
+strnumcat	./str.c	/^char* strnumcat(char* s, const char* n, size_t addlen) {$/;"	f	signature:(char* s, const char* n, size_t addlen)
+strnumcat	./str.h	/^char* strnumcat(char* s, const char* n, size_t len);$/;"	p	signature:(char* s, const char* n, size_t len)
+strnumcpy	./str.c	/^char* strnumcpy(char* s, const char* n, size_t newlen) {$/;"	f	signature:(char* s, const char* n, size_t newlen)
+strnumcpy	./str.h	/^char* strnumcpy(char* s,const char* n, size_t len);$/;"	p	signature:(char* s,const char* n, size_t len)
+test_curd	./server.c	/^void test_curd() {$/;"	f
+used	./hashmap.h	/^	size_t used;$/;"	m	struct:mapTable	access:public
+used_memory	./zmalloc.c	/^static size_t used_memory = 0;$/;"	v	file:
+used_memory	./zmalloc.h	/^static size_t used_memory;$/;"	v
+used_memory_mutex	./zmalloc.c	/^pthread_mutex_t used_memory_mutex = PTHREAD_MUTEX_INITIALIZER;$/;"	v
+val	./hashmap.h	/^	void* val;$/;"	m	struct:mapEntry	access:public
+val	./skiplist.h	/^    	char* val;$/;"	m	struct:skipnode	access:public
+wfileProc	./epoll.h	/^	aeFileProc* wfileProc; \/\/ register write call back function$/;"	m	struct:aeFileEvent	access:public
+zcalloc	./zmalloc.c	/^void *zcalloc(size_t size) {$/;"	f	signature:(size_t size)
+zcalloc	./zmalloc.h	/^void *zcalloc(size_t size);$/;"	p	signature:(size_t size)
+zfree	./zmalloc.c	/^void zfree(void *ptr) {$/;"	f	signature:(void *ptr)
+zfree	./zmalloc.h	/^void zfree(void *ptr);$/;"	p	signature:(void *ptr)
+zmalloc	./zmalloc.c	/^void *zmalloc(size_t size) {$/;"	f	signature:(size_t size)
+zmalloc	./zmalloc.h	/^void *zmalloc(size_t size);$/;"	p	signature:(size_t size)
+zmalloc_default_oom	./zmalloc.c	/^static void zmalloc_default_oom(size_t size) {$/;"	f	file:	signature:(size_t size)
+zmalloc_oom_handler	./zmalloc.c	/^static void (*zmalloc_oom_handler)(size_t) = zmalloc_default_oom;$/;"	v	file:
+zmalloc_test	./zmalloc.c	/^int zmalloc_test(int argc, char **argv) {$/;"	f	signature:(int argc, char **argv)
+zrealloc	./zmalloc.c	/^void *zrealloc(void *ptr, size_t size) {$/;"	f	signature:(void *ptr, size_t size)
+zrealloc	./zmalloc.h	/^void *zrealloc(void *ptr, size_t size);$/;"	p	signature:(void *ptr, size_t size)
