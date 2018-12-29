@@ -196,30 +196,51 @@ err:
 }
 
 void str_test() {
-/*	char* a = newstr("jfowjeife");
-	printf("%s len %lu capacity is %lu\n",a,(unsigned long)getlen(a),STR_HEAD(a)->cap);
-	a = strnumcpy(a,"jsojwoejofwo",12);
-	printf("%s len %lu capacity is %lu\n",a,(unsigned long)getlen(a),STR_HEAD(a)->cap);*/
-	char* a = emptystr();
-	const char* tmp = "sefewefe\r\n";
-	for(int i = 0; i < 4; i++) {
-		a = strnumcat(a,tmp,strlen(tmp));
-		printf("%s len %lu capacity is %lu len is %lu\n",a,(unsigned long)getlen(a),STR_HEAD(a)->cap,strlen(a));
-	}
+	char* test = newstr("test");
+
+	//get length of str and test whether the str is equal to my imagination
+	test_cond("create str and test the length and detial of str",
+			getlen(test) == 4 && strcmp(test,"test\0") == 0);
+
+	//test strnumcpy
+	char* newstr = "newtest";
+	test = strnumcpy(test,newstr,strlen(newstr));
+	test_cond("test strcmp with length",
+			getlen(test) == 7 && strcmp(test,"newtest\0") == 0);
+
+	//test clean str
+	cleanstr(test);
+	test_cond("test clean str",
+			getlen(test) == 0 && strcmp(test,"\0") == 0);
+
+	//test strcat with len
+	test = strnumcat(test,"test",strlen("test"));
+	test_cond("test strcat with len",
+				getlen(test) == 4 && strcmp(test,"test\0") == 0);
+
+	//test create a empty str.
+	test = emptystr();
+	test_cond("test empty str",
+			getlen(test) == 0 && strcmp(test,"\0") == 0);
+
+	//test parsecommand
+	parse_test();
+
 }
 
 void parse_test() {
 	int argc;
-	char* test = "get sjogjei gwjoeijgioj gwjoeijgioj gwejoij\n";
+	char* test = "get sj*gji gwjijgioj g12oe~&jgioj gwejoij\n";
 	char** result = parseCommand(test, &argc);
-	for(int i = 0; i < argc; i++) {
-		printf("%s ",result[i]);
-	}
-	printf("\n");
-	test = "123456";
+	test_cond("test parse numerous command with some symbol",
+			argc == 5);
+	test = "";
 	result = parseCommand(test, &argc);
-	for(int i = 0; i < argc; i++) {
-		printf("%s ",result[i]);
-	}
-	printf("\n");
+	test_cond("test parse empty command with some symbol",
+			argc == 0);
+
+	test = "get";
+	result = parseCommand(test, &argc);
+	test_cond("test parse one command with some symbol",
+			argc == 1);
 }

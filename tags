@@ -12,15 +12,16 @@ AE_WRITABLE	./epoll.h	21;"	d
 ANET_ERR	./inet.h	31;"	d
 ANET_OK	./inet.h	30;"	d
 INIT_DICT_SIZE	./hashmap.h	10;"	d
+MAXLINE	./client.c	14;"	d	file:
 MAX_CLIENTS	./inet.h	33;"	d
-MAX_DOUBLE_MEMORY	./str.h	11;"	d
+MAX_DOUBLE_MEMORY	./str.h	14;"	d
 MAX_LEVEL	./skiplist.h	15;"	d
 NET_IP_STR_LEN	./inet.h	32;"	d
 NOKEY_ERROR	./inet.h	39;"	d
 PARSE_ERROR	./inet.h	38;"	d
 PROTO_IOBUF_LEN	./inet.h	34;"	d
 RESIZE_FACOTR	./hashmap.h	11;"	d
-STR_HEAD	./str.h	6;"	d
+STR_HEAD	./str.h	9;"	d
 SUCCESS	./inet.h	37;"	d
 UNUSED	./hash.c	187;"	d	file:
 USAGE	./inet.h	36;"	d
@@ -102,6 +103,7 @@ client::outbuf	./server.h	/^	char* outbuf; \/\/ reply buf$/;"	m	struct:client	ac
 client::outlen	./server.h	/^	size_t outlen; \/\/ temporary number to remember how many bytes have been write every event.$/;"	m	struct:client	access:public
 client::port	./server.h	/^	int port; \/\/client port$/;"	m	struct:client	access:public
 clientData	./epoll.h	/^	void* clientData; \/\/ callback args.$/;"	m	struct:aeFileEvent	access:public
+clientMain	./client.c	/^void clientMain(FILE *fp, int sockfd) {$/;"	f	signature:(FILE *fp, int sockfd)
 client_channel	./server.h	/^	int client_channel; \/\/number fo clients$/;"	m	struct:serverInfo	access:public
 client_ip	./server.h	/^	char* client_ip; \/\/client ip$/;"	m	struct:client	access:public
 count	./skiplist.h	/^        int count;$/;"	m	struct:skiplist	access:public
@@ -160,6 +162,7 @@ list_empty	./skiplist.h	/^static inline int list_empty(struct sk_link *link) {$/
 list_entry	./skiplist.h	6;"	d
 list_init	./skiplist.h	/^static inline void list_init(struct sk_link *link) {$/;"	f	signature:(struct sk_link *link)
 m	./sortmap.h	/^	map* m;$/;"	m	struct:sortmap	access:public
+main	./client.c	/^int main(int argc, int** argv) {$/;"	f	signature:(int argc, int** argv)
 main	./server.c	/^int main() {$/;"	f
 map	./hashmap.h	/^typedef struct map {$/;"	s
 map	./hashmap.h	/^}map;$/;"	t	typeref:struct:map
@@ -186,6 +189,7 @@ mapset	./hashmap.c	/^int mapset(const char* k, void* v, map* m) {$/;"	f	signatur
 mapset	./hashmap.h	/^int mapset(const char* k,void* v,map* m);$/;"	p	signature:(const char* k,void* v,map* m)
 mask	./epoll.h	/^	int mask; \/\/register the kind of event$/;"	m	struct:aeFileEvent	access:public
 mask	./epoll.h	/^	int mask;$/;"	m	struct:aeFiredEvent	access:public
+max	./client.c	/^int max(int a, int b) {$/;"	f	signature:(int a, int b)
 mt	./hashmap.h	/^	mapTable mt[2];$/;"	m	struct:map	access:public
 mtable	./hashmap.h	/^	struct mapEntry** mtable;$/;"	m	struct:mapTable	typeref:struct:mapTable::mapEntry	access:public
 newskl	./skiplist.c	/^struct skiplist *newskl(void) {$/;"	f	signature:(void)
@@ -266,6 +270,8 @@ sortmap	./sortmap.h	/^typedef struct sortmap {$/;"	s
 sortmap	./sortmap.h	/^}sortmap;$/;"	t	typeref:struct:sortmap
 sortmap::m	./sortmap.h	/^	map* m;$/;"	m	struct:sortmap	access:public
 sortmap::skl	./sortmap.h	/^	skiplist* skl;$/;"	m	struct:sortmap	access:public
+sortmap_test	./sortmap.c	/^void sortmap_test() {$/;"	f
+sortmap_test	./sortmap.h	/^void sortmap_test();$/;"	p	signature:()
 stop	./epoll.h	/^	int stop;$/;"	m	struct:aeEventLoop	access:public
 str_test	./str.c	/^void str_test() {$/;"	f
 str_test	./str.h	/^void str_test();$/;"	p	signature:()
@@ -277,6 +283,7 @@ strnumcat	./str.c	/^char* strnumcat(char* s, const char* n, size_t addlen) {$/;"
 strnumcat	./str.h	/^char* strnumcat(char* s, const char* n, size_t len);$/;"	p	signature:(char* s, const char* n, size_t len)
 strnumcpy	./str.c	/^char* strnumcpy(char* s, const char* n, size_t newlen) {$/;"	f	signature:(char* s, const char* n, size_t newlen)
 strnumcpy	./str.h	/^char* strnumcpy(char* s,const char* n, size_t len);$/;"	p	signature:(char* s,const char* n, size_t len)
+test_cond	./str.h	/^static inline void test_cond(const char* s,bool c) {$/;"	f	signature:(const char* s,bool c)
 test_curd	./server.c	/^void test_curd() {$/;"	f
 used	./hashmap.h	/^	size_t used;$/;"	m	struct:mapTable	access:public
 used_memory	./zmalloc.c	/^static size_t used_memory = 0;$/;"	v	file:

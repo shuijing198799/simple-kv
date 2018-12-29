@@ -156,16 +156,19 @@ void readQueryFromClient(aeEventLoop *el, int fd, void *privdata, int mask) {
 				break;
 			} else {
 				printf("error connection ip %s port %d fd %d\n",c->client_ip,c->port,fd);
+				close(fd);
 				destroyClient(c);
 				return;
 			}
 		} else if (nread == 0) {
 			//0 means get the fin package, close the socket
 			printf("Client closed connection ip %s port %d fd %d\n",c->client_ip,c->port,fd);
+			close(fd);
 			destroyClient(c);
 			return;
+		} else {
+			c->inbuf = strnumcat(c->inbuf,buf,nread);
 		}
-		c->inbuf = strnumcat(c->inbuf,buf,nread);
 	} while (nread == readlen);
 
 	printf("len %d inlen %lu readbuf %s",nread,c->inlen,c->inbuf);
@@ -215,23 +218,23 @@ int _processCommand(void* tmp) {
 	char** vector = parseCommand(aux, &argc);
 	if(vector == NULL)
 		result = PARSE_ERROR;
-	else if(strcmp(vector[0],"get") == 0 && argc == 2) {
+	else if(argc == 2 && strcmp(vector[0],"get") == 0) {
 		char* ret = get(vector[1],server.sm);
 		if(!ret)
 			result = NOKEY_ERROR;
 		else {
 			result = ret;
 		}
-	} else if (strcmp(vector[0],"set") == 0 && argc == 3) {
+	} else if (argc == 3 && strcmp(vector[0],"set") == 0) {
 		set(vector[1],vector[2],server.sm);
 		result = SUCCESS;
-	} else if (strcmp(vector[0],"del") == 0 && argc == 2) {
+	} else if (argc == 2 && strcmp(vector[0],"del") == 0) {
 		retnum = del(vector[1],server.sm);
 		if(retnum == -1)
 			result = NOKEY_ERROR;
 		else
 			result = SUCCESS;
-	} else if (strcmp(vector[0],"scan") == 0 && argc == 1) {
+	} else if (argc == 1 && strcmp(vector[0],"scan") == 0) {
 		result = scan(server.sm);
 		resultFree = 1;
 	} else {
@@ -278,7 +281,7 @@ void sendReplyToClient(aeEventLoop *el, int fd, void *privdata, int mask) {
 	int nwrite;
 
 	nwrite = write(fd, c->outbuf + c->outlen,getlen(c->outbuf) - c->outlen);
-	//printf("sendReplyToClient size %d\n",nwrite);
+	printf("after clean buflen %lu outlen %lu nwrite %d\n",getlen(c->outbuf),c->outlen,nwrite);
 	if(nwrite == 0) {
 		c->outlen = 0;
 		cleanstr(c->outbuf);

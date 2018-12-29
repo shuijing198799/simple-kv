@@ -1,7 +1,10 @@
 #ifndef __STR_H
 #define __STR_H
 
-#include<stdio.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include "tools.h"
+#include "zmalloc.h"
 
 #define STR_HEAD(s) ((struct strinfo *)((s)-(sizeof(struct strinfo))))
 
@@ -56,6 +59,16 @@ static inline void setcap(const char* s, int newcap) {
 //get str length
 static inline size_t getlen(const char* s) {
 	return STR_HEAD(s)->len;
+}
+
+
+//test asset and print info
+static inline void test_cond(const char* s,bool c) {
+	if(c) {
+		printf("test %s passed\n",s);
+	} else {
+		printf("test %s failed\n",s);
+	}
 }
 
 #endif

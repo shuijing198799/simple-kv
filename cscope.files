@@ -2,6 +2,7 @@
 ./zmalloc.h
 ./sortmap.c
 ./hashmap.h
+./client.c
 ./tools.h
 ./sortmap.h
 ./epoll.c

@@ -27,5 +27,6 @@ char* get(char* key,sortmap* sm);
 int set(char* key, char* val, sortmap* sm);
 int del(char* key, sortmap* sm);
 char* scan(sortmap* map);
+void sortmap_test();
 
 #endif

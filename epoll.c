@@ -54,6 +54,7 @@ void aeStop(aeEventLoop *eventLoop) {
 
 int aeCreateFileEvent(aeEventLoop *eventLoop, int fd, int mask, aeFileProc *proc, void *clientData) {
     if (fd >= eventLoop->setsize) {
+		printf("out of max setsize\n");
         errno = ERANGE;
         return AE_ERR;
     }
@@ -75,7 +76,10 @@ int aeCreateFileEvent(aeEventLoop *eventLoop, int fd, int mask, aeFileProc *proc
 	ee.data.fd = fd;
 
 	//add event to epoll method
-	if(epoll_ctl(eventLoop->epollfd,op,fd,&ee) == -1) return AE_ERR;
+	if(epoll_ctl(eventLoop->epollfd,op,fd,&ee) == -1) { 
+		printf("modify epoll error\n");
+		return AE_ERR;
+	}
 
 	//add mask and call back function and arg to eventloop
 	//an error occurs here make me a lot time to debug. I

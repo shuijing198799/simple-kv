@@ -10,7 +10,7 @@ serverInfo server;
 //it can be see in eyes;
 void test_curd() {
 
-	for(int i = 0; i < 10000000; i++) {
+	for(int i = 0; i < 100000; i++) {
 		char string[20];
 		itoa(i,string);
 		set(string,string,server.sm);
@@ -51,6 +51,8 @@ client* initClient(const char* ip, int port,int fd) {
 }
 
 void destroyClient(client* client) {
+	aeDeleteFileEvent(server.el,client->fd,AE_READABLE | AE_WRITABLE);
+	server.client_channel--;
 	freestr(client->client_ip);
 	freestr(client->inbuf);
 	freestr(client->outbuf);
@@ -75,4 +77,6 @@ int main() {
 	aeMain(server.el);
 	destroySortMap(server.sm);
 	aeDeleteEventLoop(server.el);
+//	str_test();
+//	sortmap_test();
 }

@@ -26,7 +26,7 @@ char* get(char* key,sortmap* sm) {
 	void* ptr = mapget(key,sm->m);
 	if(ptr == NULL) 
 		return NULL;
-	printf("get val key %s val %s\n",key,((skipnode*)ptr)->val);
+//	printf("get val key %s val %s\n",key,((skipnode*)ptr)->val);
 	return ((skipnode*)ptr)->val;
 }
 
@@ -56,3 +56,23 @@ char* scan(sortmap* sm) {
 	return sklscan(sm->skl);
 }
 
+void sortmap_test() {
+	sortmap* sm = initSortMap();
+	//test set and get function
+	set("test","test1",sm);
+	test_cond("test sortmap set and get",
+			strlen(get("test",sm)) == 5 && strcmp(get("test",sm),"test1\0") == 0);
+
+	//test del and get null
+	del("test",sm);
+	test_cond("test sortmap del and get",get("test",sm) == NULL);
+
+	//test del invalid key
+	del("nokey",sm);
+	test_cond("del none key",true);
+
+	//test scan 1 key
+	set("test1","test1",sm);
+	test_cond("test scan 1 key",
+			strlen(scan(sm)) == 20 && strcmp(scan(sm),"key:test1 val:test1\n\0") == 0);
+}
