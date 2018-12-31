@@ -15,7 +15,12 @@ void initThreadPool(threadPool* pool, int coresize, int maxsize) {
 	pool->tail->pre = pool->head;
 	pthread_mutex_init(&pool->tasklock,NULL);
 	pthread_mutex_init(&pool->countlock,NULL);
+	pthread_mutex_init(&pool->idlelock,NULL);
 	pool->threads = (pthread_t*)zmalloc(maxsize * sizeof(pthread_t));
+}
+
+bool increAtomic(int target, int& orgin) {
+	int targ
 }
 
 void destroyThreadPool(threadPool* pool) {
@@ -26,6 +31,7 @@ void destroyThreadPool(threadPool* pool) {
 	printf("at last pool count is %d\n",pool->count);
 	pthread_mutex_destroy(&pool->tasklock);
 	pthread_mutex_destroy(&pool->countlock);
+	pthread_mutex_destroy(&pool->idlelock);
 	zfree(pool->tail);
 	zfree(pool->head);
 	zfree(pool->threads);

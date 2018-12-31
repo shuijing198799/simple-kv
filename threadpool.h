@@ -44,6 +44,7 @@ void initThreadPool(threadPool* pool, int coresize,int maxsize);
 void destroyThreadPool(threadPool* pool);
 void execute(threadPool* pool, runnable task,void* args);
 void threadpool_test();
+bool increAtomic(int target, int original);
 
 #endif
 
