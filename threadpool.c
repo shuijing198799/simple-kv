@@ -19,8 +19,8 @@ void initThreadPool(threadPool* pool, int coresize, int maxsize) {
 	pool->threads = (pthread_t*)zmalloc(maxsize * sizeof(pthread_t));
 }
 
-bool increAtomic(int target, int& orgin) {
-	int targ
+bool increAtomic(int& target, int& original) {
+	return true;
 }
 
 void destroyThreadPool(threadPool* pool) {
