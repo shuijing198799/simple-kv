@@ -16,6 +16,8 @@ sortmap.c	./sortmap.c	1
 sortmap.h	./sortmap.h	1
 str.c	./str.c	1
 str.h	./str.h	1
+threadpool.c	./threadpool.c	1
+threadpool.h	./threadpool.h	1
 tools.h	./tools.h	1
 zmalloc.c	./zmalloc.c	1
 zmalloc.h	./zmalloc.h	1

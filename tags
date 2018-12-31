@@ -11,18 +11,22 @@ AE_READABLE	./epoll.h	20;"	d
 AE_WRITABLE	./epoll.h	21;"	d
 ANET_ERR	./inet.h	31;"	d
 ANET_OK	./inet.h	30;"	d
-INIT_DICT_SIZE	./hashmap.h	10;"	d
+INIT_DICT_SIZE	./hashmap.h	13;"	d
+JOIN	./threadpool.h	18;"	d
+LOCK	./threadpool.h	16;"	d
 MAXLINE	./client.c	14;"	d	file:
 MAX_CLIENTS	./inet.h	33;"	d
-MAX_DOUBLE_MEMORY	./str.h	14;"	d
+MAX_DOUBLE_MEMORY	./str.h	17;"	d
 MAX_LEVEL	./skiplist.h	15;"	d
 NET_IP_STR_LEN	./inet.h	32;"	d
 NOKEY_ERROR	./inet.h	39;"	d
+NORMOUSLINE	./client.c	16;"	d	file:
 PARSE_ERROR	./inet.h	38;"	d
 PROTO_IOBUF_LEN	./inet.h	34;"	d
-RESIZE_FACOTR	./hashmap.h	11;"	d
-STR_HEAD	./str.h	9;"	d
+RESIZE_FACOTR	./hashmap.h	14;"	d
+STR_HEAD	./str.h	12;"	d
 SUCCESS	./inet.h	37;"	d
+UNLOCK	./threadpool.h	17;"	d
 UNUSED	./hash.c	187;"	d	file:
 USAGE	./inet.h	36;"	d
 __EPOLL_H	./epoll.h	11;"	d
@@ -32,6 +36,7 @@ __INET_H	./inet.h	9;"	d
 __SERVER_H	./server.h	2;"	d
 __SORTMAP_H	./sortmap.h	12;"	d
 __STR_H	./str.h	2;"	d
+__THREADPOOL_H	./threadpool.h	5;"	d
 __TOOLS_H	./tools.h	2;"	d
 __ZMALLOC_H	./zmalloc.h	8;"	d
 __list_add	./skiplist.h	/^static inline void __list_add(struct sk_link *link, struct sk_link *prev, struct sk_link *next) {$/;"	f	signature:(struct sk_link *link, struct sk_link *prev, struct sk_link *next)
@@ -89,6 +94,7 @@ anetSetNonBlock	./inet.h	/^int anetSetNonBlock( int fd, int non_block);$/;"	p	si
 anetTcpServer	./inet.c	/^int anetTcpServer(int s, int port, char *bindaddr, int backlog) {$/;"	f	signature:(int s, int port, char *bindaddr, int backlog)
 anetTcpServer	./inet.h	/^int anetTcpServer(int s, int port, char *bindaddr, int backlog);$/;"	p	signature:(int s, int port, char *bindaddr, int backlog)
 anetWrite	./inet.h	/^int anetWrite(int fd, char *buf, int count);$/;"	p	signature:(int fd, char *buf, int count)
+args	./threadpool.h	/^	void* args; \/\/parameters of runner$/;"	m	struct:task_t	access:public
 buf	./str.h	/^	char buf[];$/;"	m	struct:strinfo	access:public
 cap	./str.h	/^	size_t cap;$/;"	m	struct:strinfo	access:public
 cleanstr	./str.c	/^void cleanstr(char* s) {$/;"	f	signature:(char* s)
@@ -106,7 +112,10 @@ clientData	./epoll.h	/^	void* clientData; \/\/ callback args.$/;"	m	struct:aeFil
 clientMain	./client.c	/^void clientMain(FILE *fp, int sockfd) {$/;"	f	signature:(FILE *fp, int sockfd)
 client_channel	./server.h	/^	int client_channel; \/\/number fo clients$/;"	m	struct:serverInfo	access:public
 client_ip	./server.h	/^	char* client_ip; \/\/client ip$/;"	m	struct:client	access:public
+coresize	./threadpool.h	/^	int coresize; \/\/ main size of threadpool$/;"	m	struct:threadPool	access:public
 count	./skiplist.h	/^        int count;$/;"	m	struct:skiplist	access:public
+count	./threadpool.h	/^	int count; \/\/thread number$/;"	m	struct:threadPool	access:public
+countlock	./threadpool.h	/^	pthread_mutex_t countlock; \/\/ countlock$/;"	m	struct:threadPool	access:public
 crc64	./hash.c	/^uint64_t crc64(uint64_t crc, const unsigned char *s, uint64_t l) {$/;"	f	signature:(uint64_t crc, const unsigned char *s, uint64_t l)
 crc64Test	./hash.c	/^int crc64Test(int argc, char *argv[]) {$/;"	f	signature:(int argc, char *argv[])
 crc64_tab	./hash.c	/^static const uint64_t crc64_tab[256] = {$/;"	v	file:
@@ -120,12 +129,16 @@ destroyMap	./hashmap.c	/^void destroyMap(map* m) {$/;"	f	signature:(map* m)
 destroyMap	./hashmap.h	/^void destroyMap(map* m);$/;"	p	signature:(map* m)
 destroySortMap	./sortmap.c	/^void destroySortMap(sortmap* sm) {$/;"	f	signature:(sortmap* sm)
 destroySortMap	./sortmap.h	/^void destroySortMap(sortmap* sm);$/;"	p	signature:(sortmap* sm)
+destroyThreadPool	./threadpool.c	/^void destroyThreadPool(threadPool* pool) {$/;"	f	signature:(threadPool* pool)
+destroyThreadPool	./threadpool.h	/^void destroyThreadPool(threadPool* pool);$/;"	p	signature:(threadPool* pool)
 el	./server.h	/^	aeEventLoop* el; \/\/ main eventloop$/;"	m	struct:serverInfo	access:public
 emptystr	./str.c	/^char* emptystr() {$/;"	f
 emptystr	./str.h	/^char* emptystr();$/;"	p	signature:()
 ep_events	./epoll.h	/^	struct epoll_event *ep_events;$/;"	m	struct:aeEventLoop	typeref:struct:aeEventLoop::epoll_event	access:public
 epollfd	./epoll.h	/^	int epollfd;$/;"	m	struct:aeEventLoop	access:public
 events	./epoll.h	/^	aeFileEvent *events;$/;"	m	struct:aeEventLoop	access:public
+execute	./threadpool.c	/^void execute(threadPool* pool, runnable task,void* args) {$/;"	f	signature:(threadPool* pool, runnable task,void* args)
+execute	./threadpool.h	/^void execute(threadPool* pool, runnable task,void* args);$/;"	p	signature:(threadPool* pool, runnable task,void* args)
 fd	./epoll.h	/^	int fd;$/;"	m	struct:aeFiredEvent	access:public
 fd	./server.h	/^	int fd; \/\/file descriptor$/;"	m	struct:client	access:public
 fd	./server.h	/^	int fd; \/\/main process fd$/;"	m	struct:serverInfo	access:public
@@ -139,6 +152,8 @@ getsknval	./sortmap.h	17;"	d
 hashmap_test	./hashmap.c	/^void hashmap_test() {$/;"	f
 hashmap_test	./hashmap.h	/^void hashmap_test();$/;"	p	signature:()
 head	./skiplist.h	/^        struct sk_link head[MAX_LEVEL];$/;"	m	struct:skiplist	typeref:struct:skiplist::sk_link	access:public
+head	./threadpool.h	/^	task_t *head; \/\/task link $/;"	m	struct:threadPool	access:public
+idle	./threadpool.h	/^	int idle; \/\/idle thread$/;"	m	struct:threadPool	access:public
 inbuf	./server.h	/^	char* inbuf; \/\/ requset buf$/;"	m	struct:client	access:public
 initClient	./server.c	/^client* initClient(const char* ip, int port,int fd) {$/;"	f	signature:(const char* ip, int port,int fd)
 initClient	./server.h	/^client* initClient(const char* ip, int port,int fd);$/;"	p	signature:(const char* ip, int port,int fd)
@@ -148,6 +163,8 @@ initMapTable	./hashmap.c	/^void initMapTable(mapTable* table) {$/;"	f	signature:
 initMapTable	./hashmap.h	/^void initMapTable(mapTable* table);$/;"	p	signature:(mapTable* table)
 initSortMap	./sortmap.c	/^sortmap* initSortMap() {$/;"	f
 initSortMap	./sortmap.h	/^sortmap* initSortMap();$/;"	p	signature:()
+initThreadPool	./threadpool.c	/^void initThreadPool(threadPool* pool, int coresize, int maxsize) {$/;"	f	signature:(threadPool* pool, int coresize, int maxsize)
+initThreadPool	./threadpool.h	/^void initThreadPool(threadPool* pool, int coresize,int maxsize);$/;"	p	signature:(threadPool* pool, int coresize,int maxsize)
 inlen	./server.h	/^	size_t inlen; \/\/ temporary number to remember how many bytes have been write every event.$/;"	m	struct:client	access:public
 itoa	./tools.h	/^static void itoa(int a, char str[]) {$/;"	f	signature:(int a, char str[])
 key	./hashmap.h	/^	char* key;$/;"	m	struct:mapEntry	access:public
@@ -161,6 +178,7 @@ list_del	./skiplist.h	/^static inline void list_del(struct sk_link *link) {$/;"	
 list_empty	./skiplist.h	/^static inline int list_empty(struct sk_link *link) {$/;"	f	signature:(struct sk_link *link)
 list_entry	./skiplist.h	6;"	d
 list_init	./skiplist.h	/^static inline void list_init(struct sk_link *link) {$/;"	f	signature:(struct sk_link *link)
+lockmap	./server.h	/^	map* lockmap; \/\/ lockmap$/;"	m	struct:serverInfo	access:public
 m	./sortmap.h	/^	map* m;$/;"	m	struct:sortmap	access:public
 main	./client.c	/^int main(int argc, int** argv) {$/;"	f	signature:(int argc, int** argv)
 main	./server.c	/^int main() {$/;"	f
@@ -190,6 +208,7 @@ mapset	./hashmap.h	/^int mapset(const char* k,void* v,map* m);$/;"	p	signature:(
 mask	./epoll.h	/^	int mask; \/\/register the kind of event$/;"	m	struct:aeFileEvent	access:public
 mask	./epoll.h	/^	int mask;$/;"	m	struct:aeFiredEvent	access:public
 max	./client.c	/^int max(int a, int b) {$/;"	f	signature:(int a, int b)
+maxsize	./threadpool.h	/^	int maxsize; \/\/maxsize of threadpool$/;"	m	struct:threadPool	access:public
 mt	./hashmap.h	/^	mapTable mt[2];$/;"	m	struct:map	access:public
 mtable	./hashmap.h	/^	struct mapEntry** mtable;$/;"	m	struct:mapTable	typeref:struct:mapTable::mapEntry	access:public
 newskl	./skiplist.c	/^struct skiplist *newskl(void) {$/;"	f	signature:(void)
@@ -202,6 +221,7 @@ newstrlen	./str.c	/^char* newstrlen(const char* init, size_t len) {$/;"	f	signat
 newstrlen	./str.h	/^char* newstrlen(const char* init, size_t len);$/;"	p	signature:(const char* init, size_t len)
 next	./hashmap.h	/^	struct mapEntry* next;$/;"	m	struct:mapEntry	typeref:struct:mapEntry::mapEntry	access:public
 next	./skiplist.h	/^        struct sk_link *prev, *next;$/;"	m	struct:sk_link	typeref:struct:sk_link::	access:public
+next	./threadpool.h	/^	struct task_t* next; \/\/next node of task$/;"	m	struct:task_t	typeref:struct:task_t::task_t	access:public
 outbuf	./server.h	/^	char* outbuf; \/\/ reply buf$/;"	m	struct:client	access:public
 outlen	./server.h	/^	size_t outlen; \/\/ temporary number to remember how many bytes have been write every event.$/;"	m	struct:client	access:public
 parseCommand	./str.c	/^char **parseCommand(const char *line, int* argc) {$/;"	f	signature:(const char *line, int* argc)
@@ -209,13 +229,17 @@ parseCommand	./str.h	/^char **parseCommand(const char *line, int* argc);$/;"	p	s
 parse_test	./str.c	/^void parse_test() {$/;"	f
 parse_test	./str.h	/^void parse_test();$/;"	p	signature:()
 port	./server.h	/^	int port; \/\/client port$/;"	m	struct:client	access:public
+pre	./threadpool.h	/^	struct task_t* pre; \/\/pre node of task$/;"	m	struct:task_t	typeref:struct:task_t::task_t	access:public
 prev	./skiplist.h	/^        struct sk_link *prev, *next;$/;"	m	struct:sk_link	typeref:struct:sk_link::sk_link	access:public
+printTest	./threadpool.c	/^void* printTest(void* arg) {$/;"	f	signature:(void* arg)
 randoml	./skiplist.c	/^int randoml(void) {$/;"	f	signature:(void)
 randoml	./skiplist.h	/^int randoml(void);$/;"	p	signature:(void)
 readQueryFromClient	./inet.c	/^void readQueryFromClient(aeEventLoop *el, int fd, void *privdata, int mask) {$/;"	f	signature:(aeEventLoop *el, int fd, void *privdata, int mask)
 readQueryFromClient	./inet.h	/^void readQueryFromClient(aeEventLoop *el, int fd, void* privdata, int mask);$/;"	p	signature:(aeEventLoop *el, int fd, void* privdata, int mask)
 rehashIdx	./hashmap.h	/^	long rehashIdx;$/;"	m	struct:map	access:public
 rfileProc	./epoll.h	/^	aeFileProc* rfileProc; \/\/register read call back function$/;"	m	struct:aeFileEvent	access:public
+runnable	./threadpool.h	/^typedef void* (*runnable)(void*);\/\/real task info$/;"	t
+runner	./threadpool.h	/^	runnable runner; \/\/task func;$/;"	m	struct:task_t	access:public
 scan	./sortmap.c	/^char* scan(sortmap* sm) {$/;"	f	signature:(sortmap* sm)
 scan	./sortmap.h	/^char* scan(sortmap* map);$/;"	p	signature:(sortmap* map)
 sendReplyToClient	./inet.c	/^void sendReplyToClient(aeEventLoop *el, int fd, void *privdata, int mask) {$/;"	f	signature:(aeEventLoop *el, int fd, void *privdata, int mask)
@@ -226,6 +250,7 @@ serverInfo	./server.h	/^} serverInfo;$/;"	t	typeref:struct:serverInfo
 serverInfo::client_channel	./server.h	/^	int client_channel; \/\/number fo clients$/;"	m	struct:serverInfo	access:public
 serverInfo::el	./server.h	/^	aeEventLoop* el; \/\/ main eventloop$/;"	m	struct:serverInfo	access:public
 serverInfo::fd	./server.h	/^	int fd; \/\/main process fd$/;"	m	struct:serverInfo	access:public
+serverInfo::lockmap	./server.h	/^	map* lockmap; \/\/ lockmap$/;"	m	struct:serverInfo	access:public
 serverInfo::sm	./server.h	/^	sortmap* sm; \/\/main store structure$/;"	m	struct:serverInfo	access:public
 set	./sortmap.c	/^int set(char* key, char* val, sortmap* sm) {$/;"	f	signature:(char* key, char* val, sortmap* sm)
 set	./sortmap.h	/^int set(char* key, char* val, sortmap* sm);$/;"	p	signature:(char* key, char* val, sortmap* sm)
@@ -273,6 +298,7 @@ sortmap::skl	./sortmap.h	/^	skiplist* skl;$/;"	m	struct:sortmap	access:public
 sortmap_test	./sortmap.c	/^void sortmap_test() {$/;"	f
 sortmap_test	./sortmap.h	/^void sortmap_test();$/;"	p	signature:()
 stop	./epoll.h	/^	int stop;$/;"	m	struct:aeEventLoop	access:public
+stop	./threadpool.h	/^	int stop; \/\/stop the thread pool before destoryed$/;"	m	struct:threadPool	access:public
 str_test	./str.c	/^void str_test() {$/;"	f
 str_test	./str.h	/^void str_test();$/;"	p	signature:()
 strinfo	./str.h	/^struct strinfo {$/;"	s
@@ -283,8 +309,32 @@ strnumcat	./str.c	/^char* strnumcat(char* s, const char* n, size_t addlen) {$/;"
 strnumcat	./str.h	/^char* strnumcat(char* s, const char* n, size_t len);$/;"	p	signature:(char* s, const char* n, size_t len)
 strnumcpy	./str.c	/^char* strnumcpy(char* s, const char* n, size_t newlen) {$/;"	f	signature:(char* s, const char* n, size_t newlen)
 strnumcpy	./str.h	/^char* strnumcpy(char* s,const char* n, size_t len);$/;"	p	signature:(char* s,const char* n, size_t len)
+tail	./threadpool.h	/^	task_t *tail; \/\/task link $/;"	m	struct:threadPool	access:public
+task_func	./threadpool.c	/^void* task_func(void* arg) {$/;"	f	signature:(void* arg)
+task_t	./threadpool.h	/^typedef struct task_t {$/;"	s
+task_t	./threadpool.h	/^}task_t;$/;"	t	typeref:struct:task_t
+task_t::args	./threadpool.h	/^	void* args; \/\/parameters of runner$/;"	m	struct:task_t	access:public
+task_t::next	./threadpool.h	/^	struct task_t* next; \/\/next node of task$/;"	m	struct:task_t	typeref:struct:task_t::task_t	access:public
+task_t::pre	./threadpool.h	/^	struct task_t* pre; \/\/pre node of task$/;"	m	struct:task_t	typeref:struct:task_t::task_t	access:public
+task_t::runner	./threadpool.h	/^	runnable runner; \/\/task func;$/;"	m	struct:task_t	access:public
+tasklock	./threadpool.h	/^	pthread_mutex_t tasklock; \/\/ tasklock $/;"	m	struct:threadPool	access:public
 test_cond	./str.h	/^static inline void test_cond(const char* s,bool c) {$/;"	f	signature:(const char* s,bool c)
 test_curd	./server.c	/^void test_curd() {$/;"	f
+threadPool	./threadpool.h	/^typedef struct threadPool {$/;"	s
+threadPool	./threadpool.h	/^}threadPool;$/;"	t	typeref:struct:threadPool
+threadPool::coresize	./threadpool.h	/^	int coresize; \/\/ main size of threadpool$/;"	m	struct:threadPool	access:public
+threadPool::count	./threadpool.h	/^	int count; \/\/thread number$/;"	m	struct:threadPool	access:public
+threadPool::countlock	./threadpool.h	/^	pthread_mutex_t countlock; \/\/ countlock$/;"	m	struct:threadPool	access:public
+threadPool::head	./threadpool.h	/^	task_t *head; \/\/task link $/;"	m	struct:threadPool	access:public
+threadPool::idle	./threadpool.h	/^	int idle; \/\/idle thread$/;"	m	struct:threadPool	access:public
+threadPool::maxsize	./threadpool.h	/^	int maxsize; \/\/maxsize of threadpool$/;"	m	struct:threadPool	access:public
+threadPool::stop	./threadpool.h	/^	int stop; \/\/stop the thread pool before destoryed$/;"	m	struct:threadPool	access:public
+threadPool::tail	./threadpool.h	/^	task_t *tail; \/\/task link $/;"	m	struct:threadPool	access:public
+threadPool::tasklock	./threadpool.h	/^	pthread_mutex_t tasklock; \/\/ tasklock $/;"	m	struct:threadPool	access:public
+threadPool::threads	./threadpool.h	/^	pthread_t * threads; \/\/ thread queue$/;"	m	struct:threadPool	access:public
+threadpool_test	./threadpool.c	/^void threadpool_test() {$/;"	f
+threadpool_test	./threadpool.h	/^void threadpool_test();$/;"	p	signature:()
+threads	./threadpool.h	/^	pthread_t * threads; \/\/ thread queue$/;"	m	struct:threadPool	access:public
 used	./hashmap.h	/^	size_t used;$/;"	m	struct:mapTable	access:public
 used_memory	./zmalloc.c	/^static size_t used_memory = 0;$/;"	v	file:
 used_memory	./zmalloc.h	/^static size_t used_memory;$/;"	v

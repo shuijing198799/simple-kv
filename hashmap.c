@@ -1,7 +1,4 @@
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include "hashmap.h"
+#include "hashmap.h" 
 
 map* initMap() {
 	map* newmap = zmalloc(sizeof(*newmap));

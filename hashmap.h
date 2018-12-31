@@ -1,6 +1,9 @@
 #ifndef __HASHMAP_H
 #define __HAHSMAP_H
 
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include "str.h"
 #include "hash.h"
 #include "skiplist.h"

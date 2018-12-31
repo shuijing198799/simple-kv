@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "str.h"
-#include "zmalloc.h"
 
 char* newstr(const char* init) {
 	size_t len = (init == NULL) ? 0 : strlen(init);

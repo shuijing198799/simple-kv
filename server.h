@@ -7,6 +7,7 @@
 #include "epoll.h"
 #include "sortmap.h"
 #include "inet.h"
+#include "threadpool.h"
 
 typedef struct client { 
 	int fd; //file descriptor
@@ -23,6 +24,7 @@ typedef struct serverInfo {
 	aeEventLoop* el; // main eventloop
 	int fd; //main process fd
 	int client_channel; //number fo clients
+	map* lockmap; // lockmap
 } serverInfo;
 
 client* initClient(const char* ip, int port,int fd);

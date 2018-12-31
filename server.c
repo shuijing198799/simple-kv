@@ -62,8 +62,9 @@ void destroyClient(client* client) {
 int main() {
 	server.sm = initSortMap();
 //	str_test();
-//	parse_test();
- 	test_curd();
+//	sortmap_test();
+	threadpool_test();
+/* 	test_curd();
 	server.el = aeCreateEventLoop(1024);
 	int fd = anetCreateSocket();
 	anetTcpServer(fd, 9876, "127.0.0.1",1024);
@@ -76,7 +77,5 @@ int main() {
 	}
 	aeMain(server.el);
 	destroySortMap(server.sm);
-	aeDeleteEventLoop(server.el);
-//	str_test();
-//	sortmap_test();
+	aeDeleteEventLoop(server.el); */
 }
