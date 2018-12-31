@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 #include <sys/time.h>
 #include <pthread.h>
 #include <errno.h>
@@ -44,7 +45,6 @@ void initThreadPool(threadPool* pool, int coresize,int maxsize);
 void destroyThreadPool(threadPool* pool);
 void execute(threadPool* pool, runnable task,void* args);
 void threadpool_test();
-bool increAtomic(int target, int original);
 
 #endif
 
