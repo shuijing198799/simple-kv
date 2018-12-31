@@ -17,16 +17,21 @@ void initThreadPool(threadPool* pool, int coresize, int maxsize) {
 	pthread_mutex_init(&pool->countlock,NULL);
 	pthread_mutex_init(&pool->idlelock,NULL);
 	pool->threads = (pthread_t*)zmalloc(maxsize * sizeof(pthread_t));
+	memset(pool->threads, 0, sizeof(pthread_t) * maxsize);
 }
 
 void destroyThreadPool(threadPool* pool) {
 	pool->stop = 1;
-	for(int i = 0; i < pool->count; i++) {
-		JOIN(pool->threads[i]);
+	for(int i = 0; i < pool->maxsize; i++) {
+		if(pool->threads[i] != 0)
+			JOIN(pool->threads[i]);
 	}
-	printf("at last pool count is %d\n",pool->count);
+	//printf("at last pool count is %d\n",pool->count);
+	LOCK(pool->tasklock);
 	pthread_mutex_destroy(&pool->tasklock);
+	LOCK(pool->countlock);
 	pthread_mutex_destroy(&pool->countlock);
+	LOCK(pool->idlelock);
 	pthread_mutex_destroy(&pool->idlelock);
 	zfree(pool->tail);
 	zfree(pool->head);
@@ -36,7 +41,7 @@ void destroyThreadPool(threadPool* pool) {
 
 void* task_func(void* arg) {
 	pthread_t tid = pthread_self();
-//	printf("Thread %lu starting\n", (size_t)tid);
+//	//printf("Thread %lu starting\n", (size_t)tid);
 	threadPool *pool = (threadPool*)arg;
 
 	while(1) {
@@ -100,9 +105,9 @@ void execute(threadPool* pool, runnable task,void* args) {
 		LOCK(pool->countlock);
 		pthread_t tid;
 		if((pthread_create(&tid, NULL, task_func, (void*)pool)) == -1) {
-			printf("create thread error %s\n",strerror(errno));
+			//printf("create thread error %s\n",strerror(errno));
 		}
-		printf("create thread %lu\n",tid);
+		//printf("create thread %lu\n",tid);
 		pool->threads[pool->count] = tid;
 		pool->count++;
 		UNLOCK(pool->countlock);
@@ -111,16 +116,19 @@ void execute(threadPool* pool, runnable task,void* args) {
 
 void* printTest(void* arg) {
 	pthread_t tid = pthread_self();
-//	printf("Thread %lu print\n", (size_t)tid);
+	printf("Thread %lu print\n", (size_t)tid);
 	return NULL;
 }
 
 void threadpool_test() {
-	threadPool* pool = zmalloc(sizeof(threadPool));
-	initThreadPool(pool,4,10);
-	int tmp = 0;
-	for(int i = 0; i < 20; i++) {
-		execute(pool,printTest,NULL);
+	for(int time = 0; time < 100; time++) {
+		printf("test times is %d\n",time);
+		threadPool* pool = zmalloc(sizeof(threadPool));
+		initThreadPool(pool,4,10);
+		int tmp = 0;
+		for(int i = 0; i < 200; i++) {
+			execute(pool,printTest,NULL);
+		}
+		destroyThreadPool(pool);
 	}
-	destroyThreadPool(pool);
 }

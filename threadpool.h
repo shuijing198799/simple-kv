@@ -38,7 +38,7 @@ typedef struct threadPool {
 	int stop; //stop the thread pool before destoryed
 	pthread_mutex_t tasklock; // tasklock 
 	pthread_mutex_t countlock; // countlock
-	pthread_mutex_t idlelock; // countlock
+	pthread_mutex_t idlelock; // idlelock
 }threadPool;
 
 void initThreadPool(threadPool* pool, int coresize,int maxsize);
