@@ -12,8 +12,8 @@ AE_WRITABLE	./epoll.h	21;"	d
 ANET_ERR	./inet.h	31;"	d
 ANET_OK	./inet.h	30;"	d
 INIT_DICT_SIZE	./hashmap.h	13;"	d
-JOIN	./threadpool.h	18;"	d
-LOCK	./threadpool.h	16;"	d
+JOIN	./threadpool.h	19;"	d
+LOCK	./threadpool.h	17;"	d
 MAXLINE	./client.c	14;"	d	file:
 MAX_CLIENTS	./inet.h	33;"	d
 MAX_DOUBLE_MEMORY	./str.h	17;"	d
@@ -26,7 +26,7 @@ PROTO_IOBUF_LEN	./inet.h	34;"	d
 RESIZE_FACOTR	./hashmap.h	14;"	d
 STR_HEAD	./str.h	12;"	d
 SUCCESS	./inet.h	37;"	d
-UNLOCK	./threadpool.h	17;"	d
+UNLOCK	./threadpool.h	18;"	d
 UNUSED	./hash.c	187;"	d	file:
 USAGE	./inet.h	36;"	d
 __EPOLL_H	./epoll.h	11;"	d
@@ -154,6 +154,7 @@ hashmap_test	./hashmap.h	/^void hashmap_test();$/;"	p	signature:()
 head	./skiplist.h	/^        struct sk_link head[MAX_LEVEL];$/;"	m	struct:skiplist	typeref:struct:skiplist::sk_link	access:public
 head	./threadpool.h	/^	task_t *head; \/\/task link $/;"	m	struct:threadPool	access:public
 idle	./threadpool.h	/^	int idle; \/\/idle thread$/;"	m	struct:threadPool	access:public
+idlelock	./threadpool.h	/^	pthread_mutex_t idlelock; \/\/ idlelock$/;"	m	struct:threadPool	access:public
 inbuf	./server.h	/^	char* inbuf; \/\/ requset buf$/;"	m	struct:client	access:public
 initClient	./server.c	/^client* initClient(const char* ip, int port,int fd) {$/;"	f	signature:(const char* ip, int port,int fd)
 initClient	./server.h	/^client* initClient(const char* ip, int port,int fd);$/;"	p	signature:(const char* ip, int port,int fd)
@@ -163,8 +164,8 @@ initMapTable	./hashmap.c	/^void initMapTable(mapTable* table) {$/;"	f	signature:
 initMapTable	./hashmap.h	/^void initMapTable(mapTable* table);$/;"	p	signature:(mapTable* table)
 initSortMap	./sortmap.c	/^sortmap* initSortMap() {$/;"	f
 initSortMap	./sortmap.h	/^sortmap* initSortMap();$/;"	p	signature:()
-initThreadPool	./threadpool.c	/^void initThreadPool(threadPool* pool, int coresize, int maxsize) {$/;"	f	signature:(threadPool* pool, int coresize, int maxsize)
-initThreadPool	./threadpool.h	/^void initThreadPool(threadPool* pool, int coresize,int maxsize);$/;"	p	signature:(threadPool* pool, int coresize,int maxsize)
+initThreadPool	./threadpool.c	/^threadPool* initThreadPool( int coresize, int maxsize) {$/;"	f	signature:( int coresize, int maxsize)
+initThreadPool	./threadpool.h	/^threadPool* initThreadPool(int coresize,int maxsize);$/;"	p	signature:(int coresize,int maxsize)
 inlen	./server.h	/^	size_t inlen; \/\/ temporary number to remember how many bytes have been write every event.$/;"	m	struct:client	access:public
 itoa	./tools.h	/^static void itoa(int a, char str[]) {$/;"	f	signature:(int a, char str[])
 key	./hashmap.h	/^	char* key;$/;"	m	struct:mapEntry	access:public
@@ -228,6 +229,7 @@ parseCommand	./str.c	/^char **parseCommand(const char *line, int* argc) {$/;"	f	
 parseCommand	./str.h	/^char **parseCommand(const char *line, int* argc);$/;"	p	signature:(const char *line, int* argc)
 parse_test	./str.c	/^void parse_test() {$/;"	f
 parse_test	./str.h	/^void parse_test();$/;"	p	signature:()
+pool	./server.h	/^	threadPool* pool; \/\/threadPool of tasks$/;"	m	struct:serverInfo	access:public
 port	./server.h	/^	int port; \/\/client port$/;"	m	struct:client	access:public
 pre	./threadpool.h	/^	struct task_t* pre; \/\/pre node of task$/;"	m	struct:task_t	typeref:struct:task_t::task_t	access:public
 prev	./skiplist.h	/^        struct sk_link *prev, *next;$/;"	m	struct:sk_link	typeref:struct:sk_link::sk_link	access:public
@@ -251,6 +253,7 @@ serverInfo::client_channel	./server.h	/^	int client_channel; \/\/number fo clien
 serverInfo::el	./server.h	/^	aeEventLoop* el; \/\/ main eventloop$/;"	m	struct:serverInfo	access:public
 serverInfo::fd	./server.h	/^	int fd; \/\/main process fd$/;"	m	struct:serverInfo	access:public
 serverInfo::lockmap	./server.h	/^	map* lockmap; \/\/ lockmap$/;"	m	struct:serverInfo	access:public
+serverInfo::pool	./server.h	/^	threadPool* pool; \/\/threadPool of tasks$/;"	m	struct:serverInfo	access:public
 serverInfo::sm	./server.h	/^	sortmap* sm; \/\/main store structure$/;"	m	struct:serverInfo	access:public
 set	./sortmap.c	/^int set(char* key, char* val, sortmap* sm) {$/;"	f	signature:(char* key, char* val, sortmap* sm)
 set	./sortmap.h	/^int set(char* key, char* val, sortmap* sm);$/;"	p	signature:(char* key, char* val, sortmap* sm)
@@ -327,6 +330,7 @@ threadPool::count	./threadpool.h	/^	int count; \/\/thread number$/;"	m	struct:th
 threadPool::countlock	./threadpool.h	/^	pthread_mutex_t countlock; \/\/ countlock$/;"	m	struct:threadPool	access:public
 threadPool::head	./threadpool.h	/^	task_t *head; \/\/task link $/;"	m	struct:threadPool	access:public
 threadPool::idle	./threadpool.h	/^	int idle; \/\/idle thread$/;"	m	struct:threadPool	access:public
+threadPool::idlelock	./threadpool.h	/^	pthread_mutex_t idlelock; \/\/ idlelock$/;"	m	struct:threadPool	access:public
 threadPool::maxsize	./threadpool.h	/^	int maxsize; \/\/maxsize of threadpool$/;"	m	struct:threadPool	access:public
 threadPool::stop	./threadpool.h	/^	int stop; \/\/stop the thread pool before destoryed$/;"	m	struct:threadPool	access:public
 threadPool::tail	./threadpool.h	/^	task_t *tail; \/\/task link $/;"	m	struct:threadPool	access:public

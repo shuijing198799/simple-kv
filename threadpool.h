@@ -41,7 +41,7 @@ typedef struct threadPool {
 	pthread_mutex_t idlelock; // idlelock
 }threadPool;
 
-void initThreadPool(threadPool* pool, int coresize,int maxsize);
+threadPool* initThreadPool(int coresize,int maxsize);
 void destroyThreadPool(threadPool* pool);
 void execute(threadPool* pool, runnable task,void* args);
 void threadpool_test();

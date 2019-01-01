@@ -25,6 +25,7 @@ typedef struct serverInfo {
 	int fd; //main process fd
 	int client_channel; //number fo clients
 	map* lockmap; // lockmap
+	threadPool* pool; //threadPool of tasks
 } serverInfo;
 
 client* initClient(const char* ip, int port,int fd);

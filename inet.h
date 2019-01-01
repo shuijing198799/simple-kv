@@ -26,6 +26,7 @@
 
 #include "epoll.h"
 #include "server.h"
+#include "threadpool.h"
 
 #define ANET_OK 0 //success
 #define ANET_ERR -1 //fail

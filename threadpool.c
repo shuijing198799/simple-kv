@@ -1,7 +1,8 @@
 #include "threadpool.h"
 
 
-void initThreadPool(threadPool* pool, int coresize, int maxsize) {
+threadPool* initThreadPool( int coresize, int maxsize) {
+	threadPool* pool = zmalloc(sizeof(threadPool));
 	pool->coresize = coresize;
 	pool->maxsize = maxsize;
 	pool->idle = 0;
@@ -18,13 +19,17 @@ void initThreadPool(threadPool* pool, int coresize, int maxsize) {
 	pthread_mutex_init(&pool->idlelock,NULL);
 	pool->threads = (pthread_t*)zmalloc(maxsize * sizeof(pthread_t));
 	memset(pool->threads, 0, sizeof(pthread_t) * maxsize);
+	return pool;
 }
 
 void destroyThreadPool(threadPool* pool) {
 	pool->stop = 1;
 	for(int i = 0; i < pool->maxsize; i++) {
-		if(pool->threads[i] != 0)
+		if(pool->threads[i] != 0) {
 			JOIN(pool->threads[i]);
+		} else {
+			printf("thread space no use %lu\n",pool->threads[i]);
+		}
 	}
 	//printf("at last pool count is %d\n",pool->count);
 	LOCK(pool->tasklock);
@@ -41,16 +46,16 @@ void destroyThreadPool(threadPool* pool) {
 
 void* task_func(void* arg) {
 	pthread_t tid = pthread_self();
-//	//printf("Thread %lu starting\n", (size_t)tid);
+	printf("Thread %lu starting\n", (size_t)tid);
 	threadPool *pool = (threadPool*)arg;
 
 	while(1) {
+		//	actually we need not maintenance the count in the pool.the count and 
+		//	pid array will be destroy at last.
 		if(pool->stop && pool->head->next == pool->tail) {
-//	actually we need not maintenance the count in the pool.the count and 
-//	pid array will be destroy at last.
 			LOCK(pool->countlock);
 			pool->count--;
-			printf("Thread %lu count %d stop\n", (size_t)tid,pool->count);
+			printf("stop thread %d left idle %d\n",pool->count,pool->idle);
 			UNLOCK(pool->countlock);
 			return NULL;
 		}
@@ -99,18 +104,23 @@ void execute(threadPool* pool, runnable task,void* args) {
 	UNLOCK(pool->tasklock);
 
 	if(pool->count < pool->coresize || 
-			(pool->count >= pool->coresize && pool->count < pool->maxsize && pool->idle == 0)) {
+			(pool->count >= pool->coresize && pool->count < pool->maxsize 
+			  && pool->idle == 0 && pool->head->next != pool->tail)) {
 		//if thread number is less than core number or less than max number
 		//and idle thread is zero create a thread to run the task directly
-		LOCK(pool->countlock);
+		//and the taskpool has task todo
 		pthread_t tid;
 		if((pthread_create(&tid, NULL, task_func, (void*)pool)) == -1) {
-			//printf("create thread error %s\n",strerror(errno));
+			printf("create thread error %s\n",strerror(errno));
 		}
-		//printf("create thread %lu\n",tid);
+		
+		LOCK(pool->countlock);
 		pool->threads[pool->count] = tid;
 		pool->count++;
 		UNLOCK(pool->countlock);
+		LOCK(pool->idlelock);
+		pool->idle++;
+		UNLOCK(pool->idlelock);
 	} 
 }
 
@@ -121,12 +131,11 @@ void* printTest(void* arg) {
 }
 
 void threadpool_test() {
-	for(int time = 0; time < 100; time++) {
+	for(int time = 0; time < 1; time++) {
 		printf("test times is %d\n",time);
-		threadPool* pool = zmalloc(sizeof(threadPool));
-		initThreadPool(pool,4,10);
+		threadPool* pool = initThreadPool(4,10);
 		int tmp = 0;
-		for(int i = 0; i < 200; i++) {
+		for(int i = 0; i < 100000; i++) {
 			execute(pool,printTest,NULL);
 		}
 		destroyThreadPool(pool);
