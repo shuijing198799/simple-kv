@@ -46,6 +46,7 @@ typedef struct aeEventLoop {
 	int stop;
 	int epollfd;
 	struct epoll_event *ep_events;
+	void* (*reportPool) (void*); //report threadpool monitor everytime
 } aeEventLoop;
 
 aeEventLoop* aeCreateEventLoop (int setsize);

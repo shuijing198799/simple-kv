@@ -9,26 +9,26 @@ AE_NONE	./epoll.h	19;"	d
 AE_OK	./epoll.h	16;"	d
 AE_READABLE	./epoll.h	20;"	d
 AE_WRITABLE	./epoll.h	21;"	d
-ANET_ERR	./inet.h	31;"	d
-ANET_OK	./inet.h	30;"	d
+ANET_ERR	./inet.h	32;"	d
+ANET_OK	./inet.h	31;"	d
 INIT_DICT_SIZE	./hashmap.h	13;"	d
 JOIN	./threadpool.h	19;"	d
 LOCK	./threadpool.h	17;"	d
 MAXLINE	./client.c	14;"	d	file:
-MAX_CLIENTS	./inet.h	33;"	d
+MAX_CLIENTS	./inet.h	34;"	d
 MAX_DOUBLE_MEMORY	./str.h	17;"	d
 MAX_LEVEL	./skiplist.h	15;"	d
-NET_IP_STR_LEN	./inet.h	32;"	d
-NOKEY_ERROR	./inet.h	39;"	d
+NET_IP_STR_LEN	./inet.h	33;"	d
+NOKEY_ERROR	./inet.h	40;"	d
 NORMOUSLINE	./client.c	16;"	d	file:
-PARSE_ERROR	./inet.h	38;"	d
-PROTO_IOBUF_LEN	./inet.h	34;"	d
+PARSE_ERROR	./inet.h	39;"	d
+PROTO_IOBUF_LEN	./inet.h	35;"	d
 RESIZE_FACOTR	./hashmap.h	14;"	d
 STR_HEAD	./str.h	12;"	d
-SUCCESS	./inet.h	37;"	d
+SUCCESS	./inet.h	38;"	d
 UNLOCK	./threadpool.h	18;"	d
 UNUSED	./hash.c	187;"	d	file:
-USAGE	./inet.h	36;"	d
+USAGE	./inet.h	37;"	d
 __EPOLL_H	./epoll.h	11;"	d
 __HAHSMAP_H	./hashmap.h	2;"	d
 __HASH_H	./hash.h	2;"	d

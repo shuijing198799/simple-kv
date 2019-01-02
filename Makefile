@@ -12,7 +12,7 @@ server.o : str.h hash.h skiplist.h tools.h hashmap.h zmalloc.h epoll.h inet.h th
 epoll.o : zmalloc.h
 sortmap.o : hashmap.h skiplist.h str.h zmalloc.h
 str.o : zmalloc.h
-inet.o : epoll.h server.h
+inet.o : epoll.h server.h threadpool.h
 threadpool.o : zmalloc.h
 
 client : $(cobjects)

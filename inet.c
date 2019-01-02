@@ -173,13 +173,13 @@ void readQueryFromClient(aeEventLoop *el, int fd, void *privdata, int mask) {
 
 	printf("len %d inlen %lu readbuf %s",nread,c->inlen,c->inbuf);
 	
-	_processCommand(c); 
+	execute(server.pool,_processCommand,c);
 	return;
 	
 	//printf("len %lu\r\n%s",getlen(c->inbuf),c->inbuf);
 }
 
-int _processCommand(void* tmp) {
+void* _processCommand(void* tmp) {
 	client* c = (client*)tmp;
 	char *newline,*aux;
     int  j, linefeed_chars = 1;
@@ -191,7 +191,7 @@ int _processCommand(void* tmp) {
     // can't find /r/n means a request is too big can't read all of itvia a 16K buf
     if (newline == NULL) {
 		printf("no enough package!\n");
-        return ANET_ERR;
+        return NULL;
     }
 
     // find a command and implement it.
@@ -203,7 +203,7 @@ int _processCommand(void* tmp) {
     aux = newstrlen(c->inbuf+c->inlen,querylen);
 	printf("get command %s %lu %d\n",aux,querylen,linefeed_chars);
 	if(!aux) {
-		return ANET_ERR;
+		return NULL;
 	}
 
 	char* result;
@@ -258,6 +258,8 @@ int _processCommand(void* tmp) {
 		freestr(result);
 
     freestr(aux);
+	
+	return NULL;
 }
 
 int _sendReply(void* tmp, char* buf) {

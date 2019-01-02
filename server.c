@@ -59,14 +59,26 @@ void destroyClient(client* client) {
 	zfree(client);
 }
 
+void* reportPoolInfo(void* val) {
+	time_t now = time(NULL);
+	if(now - server.pool->lastReport >= 10) {
+		printf("pool monitor run count %d idle %d core %d max %d\n",
+				server.pool->count,server.pool->idle,server.pool->coresize,server.pool->maxsize);
+		server.pool->lastReport = now;
+	}
+	return NULL;
+}
+
+
 int main() {
 	server.sm = initSortMap();
-	server.pool = initThreadPool(8,12);
 //	str_test();
 //	sortmap_test();
 //	threadpool_test();
  	test_curd();
 	server.el = aeCreateEventLoop(1024);
+	server.pool = initThreadPool(8,12);
+	server.el->reportPool = reportPoolInfo;
 	int fd = anetCreateSocket();
 	anetTcpServer(fd, 9876, "127.0.0.1",1024);
 
@@ -79,5 +91,5 @@ int main() {
 	aeMain(server.el);
 	destroySortMap(server.sm);
 	destroyThreadPool(server.pool);
-	aeDeleteEventLoop(server.el);
+	aeDeleteEventLoop(server.el); 
 }

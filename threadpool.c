@@ -19,6 +19,7 @@ threadPool* initThreadPool( int coresize, int maxsize) {
 	pthread_mutex_init(&pool->idlelock,NULL);
 	pool->threads = (pthread_t*)zmalloc(maxsize * sizeof(pthread_t));
 	memset(pool->threads, 0, sizeof(pthread_t) * maxsize);
+	pool->lastReport = time(NULL);
 	return pool;
 }
 
@@ -46,8 +47,9 @@ void destroyThreadPool(threadPool* pool) {
 
 void* task_func(void* arg) {
 	pthread_t tid = pthread_self();
-	printf("Thread %lu starting\n", (size_t)tid);
 	threadPool *pool = (threadPool*)arg;
+	printf("Thread %lu starting count %d idle %d core %d max %d\n",
+			(size_t)tid,pool->count,pool->idle,pool->coresize,pool->maxsize);
 
 	while(1) {
 		//	actually we need not maintenance the count in the pool.the count and 

@@ -48,7 +48,7 @@ int anetSetNonBlock( int fd, int non_block);
 void acceptTcpHandler(aeEventLoop *el, int fd, void* privdata, int mask);
 void readQueryFromClient(aeEventLoop *el, int fd, void* privdata, int mask);
 void sendReplyToClient(aeEventLoop *el, int fd, void *privdata, int mask);
-int _processCommand(void* c);
+void* _processCommand(void* c);
 int _sendReply(void* c, char* buf);
 
 #endif

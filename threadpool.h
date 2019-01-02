@@ -39,6 +39,7 @@ typedef struct threadPool {
 	pthread_mutex_t tasklock; // tasklock 
 	pthread_mutex_t countlock; // countlock
 	pthread_mutex_t idlelock; // idlelock
+	time_t lastReport; //last time report the pool monitor
 }threadPool;
 
 threadPool* initThreadPool(int coresize,int maxsize);

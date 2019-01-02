@@ -126,7 +126,7 @@ int aeProcessEvents(aeEventLoop *eventLoop) {
 	//unlike redis , this demo have no time event to proces,
 	//so I choose to make epoll_wait wating forserver, if no
 	//file event occurs;
-	numevents = epoll_wait(eventLoop->epollfd, eventLoop->ep_events,eventLoop->setsize, -1);
+	numevents = epoll_wait(eventLoop->epollfd, eventLoop->ep_events,eventLoop->setsize, 1000);
 
 	printf("n events has been fired %d\n",numevents);
 
@@ -166,6 +166,7 @@ int aeProcessEvents(aeEventLoop *eventLoop) {
 
 void aeMain(aeEventLoop* eventLoop) {
 	while(!eventLoop->stop) {
+		eventLoop->reportPool(NULL);
 		aeProcessEvents(eventLoop);
 	}
 }

@@ -30,6 +30,8 @@ typedef struct serverInfo {
 
 client* initClient(const char* ip, int port,int fd);
 void destroyClient(client* client);
+void* reportPoolInfo(void*);
+	
 
 #endif
 
